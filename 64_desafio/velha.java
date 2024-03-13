@@ -13,11 +13,7 @@ public class velha { //vi que esse tava bem confuso, então decidi esplicar umas
     }
     public static void main (String[] args) {
         char[][] arr = new char[3][3]; //cria u compoi vazio
-        for (int i = 0; i < 3; i++) {            
-            for (int j = 0; j < 3; j++) {
-                arr[i][j] = '.';
-            }
-        }
+        for (int i = 0; i < 3; i++) for (int j = 0; j < 3; j++) arr[i][j] = '.';
         Scanner input = new Scanner(System.in);
         int[] coord = new int[2];
         int[] n = new int[5]; //n[0] olha colunas, n[1] olha linhas, n[2] olha diagonais au, n[3] olha diagonais ua e n[4] olha turnos :)
