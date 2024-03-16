@@ -27,7 +27,7 @@ function divisores() { //consegui aplicar o jeito legal que quis :3
     for (let i = 1; i < n/2 + 1; i++) if (n % i == 0) str += i + ", ";
     str = str.slice(0, -2);
     str += ` e ${n}.`;
-    alert(str)
+    alert(str);
 }
 function crescente() {
     let n = [];
@@ -57,18 +57,18 @@ function manoQueSaco() { //essa vai ser longa
     alert(`Horas trabalhadas: ${ht}h;
 Salário bruto: R$${(ht * vh).toFixed(2)};
 Desconto: R$${(ht * vh * pd).toFixed(2)};
-Salário líquido: R$${(ht * vh * (1 - pd)).toFixed(2)}`)
+Salário líquido: R$${(ht * vh * (1 - pd)).toFixed(2)}`);
 }
 function nome() {
 let nome = document.getElementById("name").value;
 let snome = document.getElementById("surname").value;
-alert ("Nome completo: "+nome+" "+snome)
+alert ("Nome completo: "+nome+" "+snome);
 }
 function volume() {
     let c = parseFloat(document.getElementById("c").value);
     let l = parseFloat(document.getElementById("l").value);
     let h = parseFloat(document.getElementById("h").value);
-    alert (`O Volume é ${c * l * h}.`)
+    alert (`O Volume é ${c * l * h}.`);
 }
 function login() { //ISSO DAQUI TA SALVO POR FAVOR NÃO MUDAR FOI UM SACO FAZER
     let n = document.getElementById("id").value; //!!
@@ -85,7 +85,7 @@ function conta() { //decidi exagerar nesse
     let val = parseFloat(document.getElementById("val").value);
     if (op == "dep") saldo += val;
     else saldo -= val;
-    localStorage.setItem("saldo["+n+"]", saldo)
+    localStorage.setItem("saldo["+n+"]", saldo);
     document.getElementById("saldo").innerHTML = "Saldo: R$"+saldo.toFixed(2)+".";
     if (saldo < 0) document.getElementById("msgBad").innerHTML = " Conta estourada.";
     else document.getElementById("msgBad").innerHTML = "";
@@ -98,7 +98,7 @@ function aumento() {
     else if (sal < 2000) p = 10;
     else if (sal < 3000) p = 7;
     else p = 5;
-    alert (`Seu aumento será de R$${(sal * p / 100).toFixed(2)}.`)
+    alert (`Seu aumento será de R$${(sal * p / 100).toFixed(2)}.`);
 }
 function futebol() {
     let str = document.getElementById("nam").value;
@@ -116,7 +116,7 @@ function futebol() {
         alert("idade invalida");
         return;
     }
-    alert(`A categoria de ${str} é ${cat}.`)
+    alert(`A categoria de ${str} é ${cat}.`);
 }
 function venda() {
     let val = parseFloat(document.getElementById("sale").value);
@@ -135,29 +135,29 @@ function venda() {
             break;
     }
     if (pag = "cred") p += 1;
-    alert(`o valor total de sua conta é R$${(val * (1 + p/100)).toFixed(2)}`)
+    alert(`o valor total de sua conta é R$${(val * (1 + p/100)).toFixed(2)}`);
 }
 function estado() {
     let c = (document.getElementById("est").value).charAt(0).toLowerCase();
     let str;
     switch(c) {
         case 's':
-            str = "solteiro"
+            str = "solteiro";
             break;
         case 'c':
-            str = "casado"
+            str = "casado";
             break;
         case 'd':
-            str = "divordciado"
+            str = "divordciado";
             break;
         case 'v':
-            str = "viuvo"
+            str = "viuvo";
             break;
         default:
-            str = "inválido, tente novamente"
+            str = "inválido, tente novamente";
             break;
     }
-    alert(`seu estado civil é ${str}.`)
+    alert(`seu estado civil é ${str}.`);
 }
 function local() { //código deveras eficiente com certeza (eu amo else if)
     let val = parseFloat(document.getElementById("val2").value);
@@ -181,7 +181,7 @@ function local() { //código deveras eficiente com certeza (eu amo else if)
         alert("código inválido");
         return;
     }
-    alert(`R$${val.toFixed(2)} - ${str}`)
+    alert(`R$${val.toFixed(2)} - ${str}`);
 }
 function calculadora() {
     /*pogger*/ let x = parseFloat(document.getElementById("x").value);
@@ -216,7 +216,7 @@ function calculadora() {
 }
 function estacoes() {
     let dat = document.getElementById("dat").value;
-    let m = parseInt(dat.slice(3, 5))
+    let m = parseInt(dat.slice(3, 5));
     let str;
     if (m > 0 && m <= 3) str = "Verão";
     else if (m <= 6) str = "Outono";
@@ -224,7 +224,7 @@ function estacoes() {
     else if (m <= 12) str = "Primaveira";
     else {
         alert("mês inválido");
-        return
+        return;
     }
     alert(`"A estação do ano correspondente ao mês ${m} é ${str}"`);
 }
@@ -257,7 +257,7 @@ function dia() {
             alert("dia inválido.");
             return;
     }
-    alert(`o ${d}° dia da semana é ${str}.`)
+    alert(`o ${d}° dia da semana é ${str}.`);
 }
 function decrescente() {
     let n = [];
