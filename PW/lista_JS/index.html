@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--feoto perlo rodrigo-->
 <html lang="pt-br" data-bs-theme="dark">
     <head>
         <meta charset="UTF-8">
@@ -10,28 +10,207 @@
             function IMC() {
                 let m = document.getElementById("mass").value;
                 let h = document.getElementById("height").value;
-                alert("Seu IMC é "+(m / h**2).toFixed(2));
+                let imc = m / h**2;
+                let s;
+                if (imc < 18.5) s = "magro";
+                else if (imc < 25) s = "normal";
+                else if (imc < 30) s = "sobrepeso";
+                else if (imc < 40) s = "obeso";
+                else s = "gravemente obeso";
+                alert(`Seu IMC é ${imc.toFixed(2)}
+Você é ${s}.`);
             }
             function passw() {
-                let
+                let passw = document.getElementById("passw").value;
+                if (passw.includes('0')) alert("Senha inválida, senhas não podem incluir 0.");
+                else alert("Senha válida.");
+            }
+            function media() {
+                let n1 = parseFloat(document.getElementById("n1").value);
+                let n2 = parseFloat(document.getElementById("n2").value);
+                alert (`a média é ${(n1 + n2)/2}`)
+            }
+            function divisores() { //consegui aplicar o jeito legal que quis :3
+                let n = parseInt(document.getElementById("n").value);
+                let str = "Os divisores deste número são: ";
+                for (let i = 1; i < n/2 + 1; i++) if (n % i == 0) str += i + ", ";
+                str = str.slice(0, -2);
+                str += ` e ${n}.`;
+                alert(str)
+            }
+            function crescente() {
+                let n = [];
+                for (let i = 0; i < 3; i++) n.push(document.getElementById(`x${i + 1}`).value);
+                n.sort(function(a, b){return a - b});
+                alert (`Crescente: ${n}.
+O maior é ${n[n.length - 1]}.`);
+            }
+            function euAmoNotasMmmmmmMelhoresExercíciosComCertezaNão1000000ésimaVezEba() {
+                let n = [];
+                for (let i = 0; i < 3; i++) n.push(parseFloat(document.getElementById(`y${i + 1}`).value));
+                let med = (n[0] + n[1] + n[2])/3;
+                str = `Sua média é ${med.toFixed(2)}, você está `;
+                if (med < 5) alert(str+"reprovado.");
+                else if (med < 7) alert(str+"de recuperação");
+                else alert(str+"aprovado");
+            }
+            function circulo() {
+                const pi = Math.PI;
+                let r = parseFloat(document.querySelector("#r").value); //queryselecor dessa vez poiorque não
+                alert(`A área é de ~${(pi * r**2).toFixed(2)}`);
+            }
+            function manoQueSaco() { //essa vai ser longa
+                let ht = parseInt(document.getElementById("ht").value);
+                let vh = parseInt(document.getElementById("vh").value);
+                let pd = parseInt((document.getElementById("pd").value))/100;
+                alert(`Horas trabalhadas: ${ht}h;
+Salário bruto: R$${(ht * vh).toFixed(2)};
+Desconto: R$${(ht * vh * pd).toFixed(2)};
+Salário líquido: R$${(ht * vh * (1 - pd)).toFixed(2)}`)
+            }
+            function nome() {
+            let nome = document.getElementById("name").value;
+            let snome = document.getElementById("surname").value;
+            alert ("Nome completo: "+nome+" "+snome)
+            }
+            function volume() {
+                let c = parseFloat(document.getElementById("c").value);
+                let l = parseFloat(document.getElementById("l").value);
+                let h = parseFloat(document.getElementById("h").value);
+                alert (`O Volume é ${c * l * h}.`)
+            }
+            function login() { //ISSO DAQUI TA SALVO POR FAVOR NÃO MUDAR FOI UM SACO FAZER
+                let n = document.getElementById("id").value; //!!
+                if (localStorage.getItem("saldo["+n+"]") == null) localStorage.setItem("saldo["+n+"]", "0"); //!!
+                let saldo = parseFloat(localStorage.getItem("saldo["+n+"]")); //!!
+                document.getElementById("saldo").innerHTML = "Saldo: R$"+saldo.toFixed(2)+"."; //!!
+                if (saldo < 0) document.getElementById("msgBad").innerHTML = " Conta estourada.";
+                else document.getElementById("msgBad").innerHTML = "";
+            }
+            function conta() { //decidi exagerar nesse
+                let n = document.getElementById("id").value;
+                let saldo = parseFloat(localStorage.getItem("saldo["+n+"]"));
+                let op = document.getElementById("op").value;
+                let val = parseFloat(document.getElementById("val").value);
+                if (op == "dep") saldo += val;
+                else saldo -= val;
+                localStorage.setItem("saldo["+n+"]", saldo)
+                document.getElementById("saldo").innerHTML = "Saldo: R$"+saldo.toFixed(2)+".";
+                if (saldo < 0) document.getElementById("msgBad").innerHTML = " Conta estourada.";
+                else document.getElementById("msgBad").innerHTML = "";
             }
         </script>
     </head>
     <body>
         <div style="margin:20px;"></div>
+        <h1>1) IMC:</h1>
         <div>
-            <span>peso:</span>
+            <span>peso (kg):</span>
             <input type="number" id="mass">
-            <span>altura:</span>
+            <span>altura (m):</span>
             <input type="number" id="height">
             <input type="button" onclick="IMC()" value="IMC">
         </div>
+        <h1>2) Senha:</h1>
         <div>
             <span>senha:</span>
             <input type="number" id="passw" minlength="4" maxlength="4">
-            <input type="button" onclick="passw" value="senha">
+            <input type="button" onclick="passw()" value="senha">
         </div>
-
+        <h1>3) Média:</h1>
+        <div>
+            <input type="number" id="n1">
+            <input type="number" id="n2">
+            <input type="button" onclick="media()" value="média">
+        </div>
+        <h1>4) Divisores</h1> <!--esse parecia legal de fazer de um jeito que pensei-->
+        <div>
+            <input type="number" id="n">
+            <input type="button" onclick="divisores()" value="divisores">
+        </div>
+        <h1>5) Crescente</h1>
+        <div>
+            <input type="number" id="x1">
+            <input type="number" id="x2">
+            <input type="number" id="x3">
+            <input type="button" onclick="crescente()" value="crescente">
+        </div>
+        <h1>6)de fato</h1>
+        <div>
+            <input type="number" id="y1">
+            <input type="number" id="y2">
+            <input type="number" id="y3">
+            <input type="button" onclick="euAmoNotasMmmmmmMelhoresExercíciosComCertezaNão1000000ésimaVezEba()" value="notas">
+        </div>
+        <h1>7) Círculo</h1>
+        <div>
+            <span>Raio: </span>
+            <input type="number" id="r">
+            <input type="button" onclick="circulo()" value="circulo">
+        </div>
+        <h1>8) Salário (pra que uma questão tao entediante)</h1>
+        <div>
+            <div>
+                <span>horas trabalhadas: </span>
+                <input type="number" id="ht">
+            </div>
+            <div style="margin-top:5px">
+                <span>valor/h: </span>
+                <input type="number" id="vh">
+            </div>
+            <div style="margin-top:5px">
+                <span>% de desconto: </span>
+                <input type="number" id="pd">
+            </div>
+            <input type="button" onclick="manoQueSaco()" value="dineros" style="margin-left: 10px !important;">
+        </div>
+        <h1>9) Nome</h1>
+        <div>
+            <span>nome:</span>
+            <input type="text" id="name">
+            <span>sobrenome: </span>
+            <input type="text" id="surname">
+            <input type="button" onclick="nome()" value="nome completo">
+        </div>
+        <h1>10) Volume</h1>
+        <div>
+            <div>
+                <span>comprimento: </span>
+                <input type="number" id="c">
+            </div>
+            <div style="margin-top:5px">
+                <span>largura: </span>
+                <input type="number" id="l">
+            </div>
+            <div style="margin-top:5px">
+                <span>altura: </span>
+                <input type="number" id="h">
+            </div>
+            <input type="button" onclick="volume()" value="volumne" style="margin-left: 10px !important;margin-top:5px">
+        </div>
+        <h1>11) Conta bancária</h1> <!--exagerei umuito nesse foi doloroso-->
+        <div>
+            <div>
+                <span id="saldo">Saldo:</span><span id="msgBad" style="color: #ff5555;"></span>
+            </div>
+            <div style="margin-top:5px">
+                <span>ID: </span>
+                <input type="number" id="id">
+            </div>
+            <input type="button" onclick="login()" value="login" style="margin-left: 10px !important;margin-top:5px">
+            <div style="margin-top:5px">
+                <span>operação: </span>
+                <select id="op">
+                    <option value="dep">depósito</option>
+                    <option value="ret">retirada</option>
+                </select>
+            </div>
+            <div style="margin-top:5px">
+                <span>Valor: </span>
+                <input type="number" id="val">
+            </div>
+            <input type="button" onclick="conta()" value="gagagu" style="margin-left: 10px !important;margin-top:5px">
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>
