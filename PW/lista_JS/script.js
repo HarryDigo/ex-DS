@@ -19,7 +19,7 @@ function passw() {
 function media() {
     let n1 = parseFloat(document.getElementById("n1").value);
     let n2 = parseFloat(document.getElementById("n2").value);
-    alert (`a média é ${(n1 + n2)/2}`)
+    alert (`a média é ${(n1 + n2)/2}`);
 }
 function divisores() { //consegui aplicar o jeito legal que quis :3
     let n = parseInt(document.getElementById("n").value);
