@@ -58,3 +58,4 @@ alter table peca
     add foreign key (fornecedor) references fornecedor(id);
 alter table deposito
     add foreign key (pecas) references peca(id);
+:)\g
