@@ -18,6 +18,6 @@ create table autor(
     nome varchar(100)
     );
 alter table livro
-    add foreign key (autores) references autor(id);
+    add foreign key (autores) references autor(id),
     add foreign key (categoria) references categoria(id);
 :)\g
