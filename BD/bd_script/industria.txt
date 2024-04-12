@@ -32,7 +32,7 @@ create table peca(
     );
 create table deposito(
     id integer not null primary key,
-    endereco varchar(100),
+    endereco varchar(100)
     );
 alter table funcionario
     add foreign key (departamento) references departamento(id),
@@ -43,4 +43,11 @@ alter table funcionario
 alter table peca
     add foreign key (deposito) references deposito(id),
     add foreign key (fornecedor) references fornecedor(id);
+show tables;
+desc departamento;
+desc funcionario;
+desc projeto;
+desc fornecedor;
+desc peca;
+desc deposito;
 :)\g
