@@ -20,4 +20,8 @@ create table autor(
 alter table livro
     add foreign key (autores) references autor(id),
     add foreign key (categoria) references categoria(id);
+show tables;
+desc categoria; 
+desc livro; 
+desc autor;
 :)\g
