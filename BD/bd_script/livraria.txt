@@ -2,7 +2,7 @@ create database livraria;
 use livraria
 create table categoria(
     id integer not null primary key,
-    descricao varchar(300),
+    descricao varchar(300)
     );
 create table livro(
     isbn varchar(13) not null primary key,
@@ -15,7 +15,7 @@ create table livro(
 create table autor(
     id integer not null primary key,
     nacionalidade varchar(30),
-    nome varchar(100),
+    nome varchar(100)
     );
 alter table livro
     add foreign key (autores) references autor(id);
