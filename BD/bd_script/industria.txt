@@ -35,8 +35,8 @@ create table deposito(
     endereco varchar(100)
     );
 alter table funcionario
-    add foreign key (departamento) references departamento(id),
- alter table projeto
+    add foreign key (departamento) references departamento(id);
+alter table projeto
     add foreign key (funcionarios) references funcionario(id),
     add foreign key (fornecedores) references fornecedor(id),
     add foreign key (pecas) references peca(id);
