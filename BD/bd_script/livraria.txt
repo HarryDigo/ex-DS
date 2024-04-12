@@ -19,9 +19,6 @@ create table autor(
     nome varchar(100),
     livros varchar(13)
     );
-alter table livro
-    add foreign key (autor) references autor(id),
-    add foreign key (categoria) references categoria(id);
 alter table categoria
     add foreign key (livros) references livro(isbn);
 alter table autor
