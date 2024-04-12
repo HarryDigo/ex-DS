@@ -2,15 +2,13 @@ create database industria;
 use industria
 create table departamento(
     id integer not null primary key,
-    setor varchar(30),
-    funcionarios integer
+    setor varchar(30)
     );
 create table funcionario(
     id integer not null primary key,
     salario float,
     telefone varchar(11),
-    departamento integer,
-    projetos integer
+    departamento integer
     );
 create table projeto(
     id integer not null primary key,
@@ -23,39 +21,26 @@ create table projeto(
     );
 create table fornecedor(
     id integer not null primary key,
-    endereco varchar(100),
-    projetos integer,
-    pecas integer
+    endereco varchar(100)
     );
 create table peca(
     id integer not null primary key,
     peso float,
     cor varchar(20),
-    projetos integer,
     deposito integer,
     fornecedor integer
     );
 create table deposito(
     id integer not null primary key,
     endereco varchar(100),
-    pecas integer
     );
-alter table departamento
-    add foreign key (funcionarios) references funcionario(id);
 alter table funcionario
     add foreign key (departamento) references departamento(id),
-    add foreign key (projetos) references projeto(id);
  alter table projeto
     add foreign key (funcionarios) references funcionario(id),
     add foreign key (fornecedores) references fornecedor(id),
     add foreign key (pecas) references peca(id);
-alter table fornecedor
-    add foreign key (projetos) references projeto(id),
-    add foreign key (pecas) references peca(id);
 alter table peca
-    add foreign key (projetos) references projeto(id),
     add foreign key (deposito) references deposito(id),
     add foreign key (fornecedor) references fornecedor(id);
-alter table deposito
-    add foreign key (pecas) references peca(id);
 :)\g
