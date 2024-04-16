@@ -1,3 +1,4 @@
+//Feito por Rodrigo Scatolin Flora do Rio, rodrigo.scatolin.rio@gmail.com ou rodrigo.rio@etec.sp.gov.br
 import java.util.Random;
 import java.util.Scanner;
 
