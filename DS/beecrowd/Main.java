@@ -13,37 +13,16 @@ public class Main {
         char arr[][] = new char[w][h];
         String aux;
         int pX = 0, pY = 0;
-        ArrayList<int[]> coords = new ArrayList<int[]>();
-        int[] auxCoords;
 
         for (int i = 0; i < h; i++) {
             aux = input.next();
             arr[i] = aux.toCharArray();
             if (aux.contains("P")) {
-                pX = aux.indexOf("P", 1);
-                pY = i;
-            }
-        }
-
-        coords.add(new int[]{pX, pY});
-
-        for (int i = -1; i < 2; i += 2) coords.add(new int[]{pX + i, pY});
-        for (int i = -1; i < 2; i += 2) coords.add(new int[]{pX, pY + i});
-
-        for (int i = 1; i < coords.size(); i++) {
-            auxCoords = coords.get(i);
-            switch (arr[auxCoords[0]][auxCoords[1]]) {
-                case '#':
-                    coords.remove(coords.get(i));
-                    break;
-            
-                default:
-                    break;
+                Coordenada player = new Coordenada(aux.indexOf("P", 1), i);
             }
         }
         
-        for (int i = 0; i < coords.size(); i++) System.out.println(Arrays.toString(coords.get(i)));
-        System.out.println(coords.indexOf(coords.get(1)));
+        player.getCoords();
 
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
@@ -55,6 +34,20 @@ public class Main {
         System.out.printf("P: %d %d", pX + 1, pY + 1);
 
         input.close();
+    }
+}
+
+class Coordenada {
+    public int x, y;
+
+    Coordenada(int x,int y) {
+        System.out.println("funciona");
+        self.x = x;
+        self.y = y;
+    }
+
+    public void getCoords() {
+        System.out.printf("%d %d", x + 1, y + 1);
     }
 }
 /*
