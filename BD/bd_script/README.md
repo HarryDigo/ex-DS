@@ -1,1 +1,1 @@
-Fiz tudo sem o db designer, direto no terminal, então estou anexando a descrição das tabelas ao invés das imagens
+Foreign keys já estão implementadas
