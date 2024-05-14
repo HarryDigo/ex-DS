@@ -1,23 +1,49 @@
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 public class Conta {
-    private String cliente;
+    public static ArrayList<String> ids = new ArrayList<String>();
+    public static int qtdConta;
+
+    private String id;
     private String tipo;
-    private double saldo;
+    private String nome;
+    private String senha;
     private double limite;
+    private double saldo;
 
-    public Conta(String cliente, double saldo, double limite) {
-        this.cliente = cliente;
-        this.saldo = saldo;
-        setLimite(limite);
+    public Conta() {
+        int auxInt = Main.rand.nextInt(99999999);
+        String auxString = String.format("%08d",auxInt);
+
+        while (ids.contains(auxString)) {
+            auxInt = Main.rand.nextInt(99999999);
+            auxString = String.format("%08d",auxInt);
+        }
+
+        id = auxString;
+        ids.add(auxString);
+        qtdConta++;
     }
 
-    public String getCliente() {
-        return cliente;
+    public String getId() {
+        return id;
     }
 
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String cliente) {
+        this.nome = cliente;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public double getSaldo() {
@@ -76,7 +102,7 @@ public class Conta {
         }
 
         if (saldo + valor < limite) {
-            JOptionPane.showMessageDialog(null, cliente+"\nConta "+tipo+"\n\nSeu saldo é insuficiente para esta transação");
+            JOptionPane.showMessageDialog(null, nome+"\nConta "+tipo+"\n\nSeu saldo é insuficiente para esta transação");
             return;
         }
 

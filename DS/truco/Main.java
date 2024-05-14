@@ -28,18 +28,18 @@ public class Main {
 }
 
 class Carta {
-    public static String[] ordem = new String[]{"4", "5", "6", "7", "Rainha", "Valete", "Rei", "As", "2", "3"};
+    public static String[] ordem = new String[]{"4", "5", "6", "7", "Dama", "Valete", "Rei", "As", "2", "3"};
     public static String[] naipes = new String[]{"ouros", "espadas", "copas", "paus"};
     
     public int id;
     public int value;
-    public String naipe;
+    public int naipe;
     public String name;
 
     Carta(int value, int naipe) {
         this.id = value * 4 + naipe;
         this.value = value;
-        this.naipe = naipes[naipe];
-        this.name = ordem[value] + " de " + this.naipe; 
+        this.naipe = naipe;
+        this.name = ordem[value] + " de " + naipes[naipe]; 
     }
 }
