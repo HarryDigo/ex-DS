@@ -89,10 +89,10 @@ public class Conta {
         }
     }
 
-    public void transacao(String tipo, double valor) {
+    public boolean transacao(String tipo, double valor) {
         if (valor < 0) {
             JOptionPane.showMessageDialog(null, "Valor inválido, tente novamente;");
-            return;
+            return false;
         }
 
         if (tipo == "saque") {
@@ -102,10 +102,11 @@ public class Conta {
         }
 
         if (saldo + valor < limite) {
-            JOptionPane.showMessageDialog(null, nome+"\nConta "+tipo+"\n\nSeu saldo é insuficiente para esta transação");
-            return;
+            JOptionPane.showMessageDialog(null, nome+"\nId: "+id+"\nConta "+this.tipo+"\n\nSeu saldo é insuficiente para esta transação");
+            return false;
         }
 
         saldo += valor;
+        return true;
     }
 }
