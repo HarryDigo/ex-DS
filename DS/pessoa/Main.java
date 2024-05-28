@@ -9,10 +9,16 @@ public class Main {
         String auxString = "";
         int auxInt;
 
-        for (int i = 0; i < 4; i++) {
+        do {
+            auxString = JOptionPane.showInputDialog("Quantas pessoas você gostaria de criar?");
+        } while (!MyInt.tryParse(auxString)); 
+
+        auxInt = Integer.parseInt(auxString);
+
+        for (int i = 0; i < auxInt; i++) {
             do {
-                auxString = JOptionPane.showInputDialog("1 - Pessoa Física\n2 - Pessoa Jurídica");
-            } while (!MyInt.tryParse(auxString));
+                auxString = JOptionPane.showInputDialog(String.format("Pessoa %d\n\n1 - Pessoa Física\n2 - Pessoa Jurídica", i+1));
+            } while (!MyInt.tryParse(auxString)); 
 
             auxInt = Integer.parseInt(auxString);
 
@@ -22,7 +28,14 @@ public class Main {
                     auxPessoa = pessoas.get(i);
                     auxPessoa.setNome(JOptionPane.showInputDialog("Insira o seu nome"));
                     auxPessoa.setEndereco(JOptionPane.showInputDialog("Insira o seu endereço"));
-                    ((Fisica) auxPessoa).setCpf(JOptionPane.showInputDialog("Insira o seu CPF"));
+
+                    do {
+                        auxString = JOptionPane.showInputDialog("Insira o seu CPF");
+                        JOptionPane.showMessageDialog(null, auxString);
+                        if (!Fisica.checkCpf(auxString)) JOptionPane.showMessageDialog(null, "CPF inválido, tente novamente");
+                    } while (!Fisica.checkCpf(auxString));
+                    ((Fisica) auxPessoa).setCpf(auxString);
+
                     break;
 
                 case 2:
@@ -30,11 +43,18 @@ public class Main {
                     auxPessoa = pessoas.get(i);
                     auxPessoa.setNome(JOptionPane.showInputDialog("Insira o seu nome"));
                     auxPessoa.setEndereco(JOptionPane.showInputDialog("Insira o seu endereço"));
-                    ((Juridica) auxPessoa).setCnpj(JOptionPane.showInputDialog("Insira o seu CNPJ"));
+
+                    do {
+                        auxString = JOptionPane.showInputDialog("Insira o seu CNPJ");
+                        if (!Juridica.checkCnpj(auxString)) JOptionPane.showMessageDialog(null, "CNPJ inválido, tente novamente");
+                    } while (!Juridica.checkCnpj(auxString));
+                    ((Juridica) auxPessoa).setCnpj(auxString);
+
                     break;
             
                 default:
                     i--;
+
                     break;
             }
         }
@@ -43,12 +63,12 @@ public class Main {
 
         for (int i = 0; i < pessoas.size(); i++) {
             auxPessoa = pessoas.get(i);
-            auxString += String.format("Pessoa %d\n", i+1);
+            auxString += String.format("Pessoa %d (%s)\n", i+1, auxPessoa.getClass());
             auxString += "Nome = "+auxPessoa.getNome()+"\n";
             auxString += "Endereço = "+auxPessoa.getEndereco()+"\n";
 
             if (auxPessoa instanceof Fisica) auxString += "CPF = "+((Fisica) auxPessoa).getCpf()+"\n\n";
-            else auxString += "CPF = "+((Juridica) auxPessoa).getCnpj()+"\n\n";
+            else auxString += "CNPJ = "+((Juridica) auxPessoa).getCnpj()+"\n\n";
         }
 
         System.out.print(auxString);
