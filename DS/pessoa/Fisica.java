@@ -1,5 +1,3 @@
-import javax.swing.JOptionPane;
-
 public class Fisica extends Pessoa{
 
     private String cpf;
@@ -23,8 +21,6 @@ public class Fisica extends Pessoa{
         if (cpf.length() != 11 || MyInt.tryParse(cpf)) return false; //simples
 
         for (int i = 0; i < 9; i++) auxInt += (cpf.charAt(i) - '0') * (10 - i); //gera o numero grandão do coiso
-
-        JOptionPane.showMessageDialog(null, "alo");
 
         auxInt = 11 - auxInt % 11; //faz a conversão
         

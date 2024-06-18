@@ -31,7 +31,6 @@ public class Main {
 
                     do {
                         auxString = JOptionPane.showInputDialog("Insira o seu CPF");
-                        JOptionPane.showMessageDialog(null, auxString);
                         if (!Fisica.checkCpf(auxString)) JOptionPane.showMessageDialog(null, "CPF inválido, tente novamente");
                     } while (!Fisica.checkCpf(auxString));
                     ((Fisica) auxPessoa).setCpf(auxString);
