@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gooday/page2.dart';
 
+//AVISO PARA O RAFAEL OU LUIS EDUARDO:
+//
+//Vou deixar sem comentário, mas confia, fui eu que fiz tudo (da para ver pela gambiarra) e consigo explicar tudo (menos aqueles expanded da row la embaixo na pagina 2 que eu realmente peguei da internet (divisória fofa))
+//
+//Trabalhodo rodrigo scatolin flora do rio do 2° DS
+//
+//Mais uma coisa, o trabalho inteiro foi feito para EXATAMENTE a configuração do samsung galaxy s8+ na exibição mobile do inspecionar do google, se estiver errado fora disso não é culpa minha (é sim)
+
 class Page1 extends StatelessWidget {
     const Page1({super.key});
 
@@ -12,7 +20,7 @@ class Page1 extends StatelessWidget {
                 children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 80),
-                      child: Image.asset("images/casualdog.png", width: double.infinity,),
+                      child: Image.asset("images/casualdog.png", width: 360,),
                     ),
                     const Padding(
                         padding: EdgeInsets.only(top: 40),
@@ -39,9 +47,7 @@ class Page1 extends StatelessWidget {
                                     backgroundColor: const Color(0xff14c871), 
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7), )
                                     ),
-                                
                                 onPressed: () {},
-                                
                                 child: Row(
                                     children: [
                                         SizedBox(
@@ -51,13 +57,13 @@ class Page1 extends StatelessWidget {
                                                 decoration: BoxDecoration(color: const Color(0xffFFFEFE),borderRadius: BorderRadius.circular(5), border: Border.all(color: const Color(0xff14c871), width: 2)),
                                                 child: Image.asset("images/Google.png"),
                                                 ),
-                                            ),
+                                        ),
                                         const Padding(
-                                            padding: EdgeInsets.only(left: 50),
-                                            child: Center(child: Text("Como deseja acessar?", style: TextStyle(fontSize: 10, color: Colors.white),)),
+                                            padding: EdgeInsets.only(left: 45),
+                                            child: Center(child: Text("Como deseja acessar?", style: TextStyle(fontSize: 12, color: Colors.white),)),
                                         )
-                                        ],
-                                    )
+                                    ],
+                                )
                             ),
                         ),
                     ),
@@ -76,7 +82,7 @@ class Page1 extends StatelessWidget {
                                 onPressed: () {
                                     Navigator.push(context, MaterialPageRoute(builder: (context) => const Page2()));
                                 },
-                                child: const Center(child: Text("Outras Opções", style: TextStyle(fontSize: 10, color: Colors.black),)),
+                                child: const Center(child: Text("Outras Opções", style: TextStyle(fontSize: 12, color: Colors.black, fontFamily: "Arial"),)),
                             ),
                         ),
                     )
