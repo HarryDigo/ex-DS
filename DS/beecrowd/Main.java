@@ -22,7 +22,7 @@ public class Main {
             }
         }
         
-        player.getCoords();
+        //player.getCoords();
 
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
@@ -42,8 +42,8 @@ class Coordenada {
 
     Coordenada(int x,int y) {
         System.out.println("funciona");
-        self.x = x;
-        self.y = y;
+        this.x = x;
+        this.y = y;
     }
 
     public void getCoords() {

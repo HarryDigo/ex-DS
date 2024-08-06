@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import '../components/general_appbar.dart';
 
 class Home extends StatefulWidget {
     const Home({super.key});
@@ -11,23 +14,31 @@ class _HomeState extends State<Home> {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-            body: Container(
-
+            body: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                  children: [
+                      Container(),
+                      Container()
+                  ],
+              ),
             ),
-            appBar: AppBar(
-
-            ),
+            appBar: appBarGen,
             drawer: const Drawer(
                 
             ),
-            bottomNavigationBar: BottomNavigationBar(
+            /*bottomNavigationBar: BottomNavigationBar(
                 items: const [
-                    
+                    BottomNavigationBarItem(icon: Text("oi"))
                 ],
-            ),
+            ),*/
             floatingActionButton: FloatingActionButton(
                 onPressed: () {print("gala sólida");},
             ),
         );
     }
 }
+
+const boxDecor = BoxDecoration(
+    
+);
