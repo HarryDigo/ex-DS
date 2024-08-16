@@ -10,7 +10,7 @@ public class EL_01 extends JFrame {
     private final JPanel panel1, panel2, panel3;
 
     public EL_01 () {
-        super("Exemplo FlowLayout");
+        super("Exemplo BorderLayout");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         lblNome = new JLabel("Nome: ");

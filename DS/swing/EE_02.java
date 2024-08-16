@@ -9,7 +9,7 @@ public class EE_02 extends JFrame {
     private final JButton btnOk, btnCancel;
 
     public EE_02 () {
-        super("Exemplo FlowLayout");
+        super("Exemplo GridLayout");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         lblNome = new JLabel("Nome: ");
