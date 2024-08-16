@@ -1,25 +1,25 @@
-//só tem que mudar umas 3 linhas do exercicio 1 para o 2
+//tem que mudar um pouco mais por causa do layout, mas ainda assim
 
 import java.awt.*;
 import javax.swing.*;
 
 public class EL_01 extends JFrame {
-    private JLabel lblNome, lblEnd, lblCid, lblEst;
-    private JTextField txtNome, txtEnd, txtCid, txtEst;
-    private JButton btnOk, btnCancel;
-    private JPanel panel1, panel2, panel3;
+    private final JLabel lblNome, lblEnd, lblCid, lblEst;
+    private final JTextField txtNome, txtEnd, txtCid, txtEst;
+    private final JButton btnOk, btnCancel;
+    private final JPanel panel1, panel2, panel3;
 
     public EL_01 () {
         super("Exemplo FlowLayout");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         lblNome = new JLabel("Nome: ");
-        txtNome = new JTextField(15);
         lblEnd = new JLabel("Endereço: ");
-        txtEnd = new JTextField(20);
         lblCid = new JLabel("Cidade: ");
-        txtCid = new JTextField(15);
         lblEst = new JLabel("Estado: ");
+        txtNome = new JTextField(15);
+        txtEnd = new JTextField(20);
+        txtCid = new JTextField(15);
         txtEst = new JTextField(2);
         btnOk = new JButton("OK");
         btnCancel = new JButton("Cancelar");
@@ -30,24 +30,34 @@ public class EL_01 extends JFrame {
 
         Container window;
         window = getContentPane();
-        window.setLayout(new GridLayout(5, 2));
+        window.setLayout(new BorderLayout());
 
-        window.add(lblNome);
-        window.add(txtNome);
-        window.add(lblEnd);
-        window.add(txtEnd);
-        window.add(lblCid);
-        window.add(txtCid);
-        window.add(lblEst);
-        window.add(txtEst);
-        window.add(btnOk);
-        window.add(btnCancel);
+        panel1.setLayout(new GridLayout(4, 1));
+        panel2.setLayout(new GridLayout(4, 1));
+        panel3.setLayout(new FlowLayout());
+
+        panel1.add(lblNome);
+        panel1.add(lblEnd);
+        panel1.add(lblCid);
+        panel1.add(lblEst);
+
+        panel2.add(txtNome);
+        panel2.add(txtEnd);
+        panel2.add(txtCid);
+        panel2.add(txtEst);
+        
+        panel3.add(btnOk);
+        panel3.add(btnCancel);
+
+        window.add(panel1, BorderLayout.WEST);
+        window.add(panel2, BorderLayout.CENTER);
+        window.add(panel3, BorderLayout.SOUTH);
 
         pack();
     }
 
     public static void main(String[] args) {
-        EL_01 ex1 = new EL_01();
-        ex1.setVisible(true);
+        EL_01 ex3 = new EL_01();
+        ex3.setVisible(true);
     }
 }
