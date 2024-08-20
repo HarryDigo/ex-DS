@@ -210,7 +210,7 @@ public class EL_02 extends JFrame {
             }
         }
 
-        i = 0; //outra coisa que não sei como funciona mas quebra sem, tipo eu literalmente coloquei como 0 antes (linha 169), mas se tira quebra (ex que quebra: 34.0 + 5 + 5 * 5)
+        i = 0; //outra coisa que não sei como funciona mas quebra sem, tipo eu literalmente coloquei como 0 antes (linha 169), mas se tira quebra (ex. que quebra: 34.0 + 5 + 5 * 5)
         
         if(elements.contains("+") || elements.contains("-")) { //igual aos outros só que para soma e subtração
             while(true) {
