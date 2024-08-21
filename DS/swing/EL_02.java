@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class EL_02 extends JFrame {
     private final JTextField txtCalc; //variaveis de objetos do JFrame
-    private final JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnDot, btnEqual, btnSum, btnSub, btnMult, btnDiv;
-    private final JPanel panel1, panel2;
+    private final JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnDEL, btnAC, btnDot, btnEqual, btnSum, btnSub, btnMult, btnDiv;
+    private final JPanel panel1, panel2, panel3;
 
     private String operation = ""; //string da operação
     private ArrayList<String> elements; //ArrayList dos objetos da operação
@@ -28,6 +28,8 @@ public class EL_02 extends JFrame {
         btn7 = new JButton("7");
         btn8 = new JButton("8");
         btn9 = new JButton("9");
+        btnDEL = new JButton("DEL");
+        btnAC = new JButton ("AC");
         btnDot = new JButton(".");
         btnEqual = new JButton("=");
         btnSum = new JButton("+");
@@ -36,6 +38,18 @@ public class EL_02 extends JFrame {
         btnDiv = new JButton("/");
 
         txtCalc.setEditable(false); //desligar ações no JTextField
+
+        btnDEL.addActionListener((actionEvent) -> { //evento para apagar o ultimo elemento
+            if (" ".equals(operation.substring(operation.length() - 1))) operation = operation.substring(0, operation.length() - 3); //checa se o ultimo caracter é um espaço e nesse caso corta 3 da string
+            else operation = operation.substring(0, operation.length() - 1); //corta um caracter da string em todos os outros casos
+
+            txtCalc.setText(operation);
+        });
+
+        btnAC.addActionListener((actionEvent) -> { //evento de limpar a operação
+            operation = ""; //limpa a string da operação
+            txtCalc.setText(operation); //comum em todos os eventos, só para atualizar o texto
+        });
 
         btnEqual.addActionListener((actionEvent) -> { //evento de calcular a equação
             elements = new ArrayList<>(Arrays.asList(operation.split("\\s+"))); //separação da String em elementos individuais
@@ -50,7 +64,7 @@ public class EL_02 extends JFrame {
                 operation = elements.get(0); //pega o 1° (unico) elemento da lista, portanto o resultado
             }
 
-            txtCalc.setText(operation); //comum em todos os eventos, só para atualizar o texto
+            txtCalc.setText(operation);
         });
 
         btnSum.addActionListener((actionEvent) -> { //todos os eventos (só adicionam coisas à String da operação)
@@ -130,35 +144,41 @@ public class EL_02 extends JFrame {
         
         panel1 = new JPanel(); //paineis
         panel2 = new JPanel();
+        panel3 = new JPanel();
 
         Container window; //janela com borderlayout
         window = getContentPane();
         window.setLayout(new BorderLayout());
 
         panel1.setLayout(new FlowLayout()); //ambos os layouts dos paineis
-        panel2.setLayout(new GridLayout(4, 4));
+        panel2.setLayout(new GridLayout(1, 2));
+        panel3.setLayout(new GridLayout(4, 4));
 
         panel1.add(txtCalc); //objeto painel 1 
 
-        panel2.add(btn7); //objetos painel 2 
-        panel2.add(btn8);
-        panel2.add(btn9);
-        panel2.add(btnDiv);
-        panel2.add(btn4);
-        panel2.add(btn5);
-        panel2.add(btn6);
-        panel2.add(btnMult);
-        panel2.add(btn1);
-        panel2.add(btn2);
-        panel2.add(btn3);
-        panel2.add(btnSub);
-        panel2.add(btn0);
-        panel2.add(btnDot);
-        panel2.add(btnEqual);
-        panel2.add(btnSum);
+        panel2.add(btnDEL);
+        panel2.add(btnAC);
+
+        panel3.add(btn7); //objetos painel 3
+        panel3.add(btn8);
+        panel3.add(btn9);
+        panel3.add(btnDiv);
+        panel3.add(btn4);
+        panel3.add(btn5);
+        panel3.add(btn6);
+        panel3.add(btnMult);
+        panel3.add(btn1);
+        panel3.add(btn2);
+        panel3.add(btn3);
+        panel3.add(btnSub);
+        panel3.add(btn0);
+        panel3.add(btnDot);
+        panel3.add(btnEqual);
+        panel3.add(btnSum);
 
         window.add(panel1, BorderLayout.NORTH); //colocando os paineis no lugar certo
         window.add(panel2, BorderLayout.CENTER);
+        window.add(panel3, BorderLayout.SOUTH);
 
         pack(); //colocando o tamanho da janela automaticamente
     }
@@ -194,6 +214,11 @@ public class EL_02 extends JFrame {
                     if (elements.get(i).equals("/")) { //mesma coisa para a divisão
                         x = MyDouble.tryParse(elements.get(i - 1));
                         y = MyDouble.tryParse(elements.get(i + 1));
+
+                        if(y == 0) { //checa divisão por 0
+                            error = true;
+                            return elements;
+                        }
 
                         elements.set(i - 1, Double.toString(x / y));
                         elements.remove(i + 1);
@@ -246,7 +271,7 @@ public class EL_02 extends JFrame {
             }
         }
 
-        MyDouble.tryParse(elements.get(0)); //ve se o primeiro elemento é valido (util para quando o "." é usado errado (ex. 5.55.2))
+        MyDouble.tryParse(elements.get(0)); //ve se o primeiro elemento é valido (util para quando o "." é usado errado (ex. 5.55.2))z
 
         if (elements.size() == 1) return elements; //checa se só tem o resultado sobrando
         else return evaluate(elements); //faz a recursão no caso de algo ter ido errado
