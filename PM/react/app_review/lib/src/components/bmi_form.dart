@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:app_review/src/components/classification.dart';
+import 'package:app_review/src/components/ideal_weight.dart';
 import 'package:flutter/material.dart';
 
 class BmiForm extends StatefulWidget {
@@ -15,22 +17,31 @@ class _BmiFormState extends State<BmiForm> {
     TextEditingController pesoController = TextEditingController();
 
     late String bmiResult;
+    late String classif;
+    late String idealW;
 
     @override
     void initState() {
         super.initState();
-        bmiResult = " ";
+        bmiResult = "IMC:";
+        classif = "Classificação:";
+        idealW = "Peso Ideal:";
     }
 
     void _calcBmi() {
         double alt = double.tryParse(altController.text.replaceAll(',', '.')) ?? 0;
         double peso = double.tryParse(pesoController.text.replaceAll(',', '.')) ?? 0;
 
+        double bmi = (peso / pow(alt, 2));
+
         setState(() {
             if (alt == 0 || peso == 0) {
-                bmiResult = "Um ou mais Valores Inválidos";
+                bmiResult = " ";
+                classif = "Um ou mais valores inválidos";
+                idealW = " ";
             } else {
-                bmiResult = ("IMC: ${(peso / pow(alt, 2)).toStringAsFixed(2)}");
+                bmiResult = ("IMC: ${bmi.toStringAsFixed(2)}");
+                if (bmi < 18) classif = ""
             }
         });
     }
@@ -69,7 +80,7 @@ class _BmiFormState extends State<BmiForm> {
                             controller: pesoController,
                         ),
                         Padding(
-                            padding: const EdgeInsets.only(top: 15),
+                            padding: const EdgeInsets.only(top: 15, bottom: 15),
                             child: Center(
                                 child: ElevatedButton(
                                     onPressed: () {
@@ -82,7 +93,14 @@ class _BmiFormState extends State<BmiForm> {
                                 ),
                             ),
                         ),
-                        Text(bmiResult)
+                        Container(
+                            child: Column(children: [
+                                Text(bmiResult),
+                                Classification(classif: classif),
+                                IdealWeight(idealW: idealW)
+                            ],
+                            )
+                        )
                     ],
                 ),
             ),

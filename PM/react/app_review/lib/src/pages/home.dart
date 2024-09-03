@@ -55,8 +55,7 @@ const titleStyle = TextStyle(
 
 const boxDecor = BoxDecoration(
     color: Color(0xffd1d5d9),
-    borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20),
-        topRight: Radius.circular(20)
+    borderRadius: BorderRadius.all(
+        Radius.circular(20)
     )
 );
