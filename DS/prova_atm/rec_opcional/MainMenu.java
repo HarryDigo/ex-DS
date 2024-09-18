@@ -87,6 +87,9 @@ public class MainMenu extends JFrame {
             if (txtModel.getText().isBlank() || txtBrand.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this, "Insira valores válidos");
                 return;
+            } else if (Car.names.contains(txtBrand.getText()+" "+txtModel.getText())) {
+                JOptionPane.showMessageDialog(this, "Este registro já existe");
+                return;
             }
 
             String cat;
@@ -95,11 +98,18 @@ public class MainMenu extends JFrame {
             else if (radioSuv.isSelected()) cat = "SUV";
             else cat = "Hatch";
 
-            Main.carros.add(new Carro(txtModel.getText(), txtBrand.getText(), cat, checkAc.isSelected(), checkRadio.isSelected(), checkMulti.isSelected()));
+            Main.currentCar = new Car(txtModel.getText(), txtBrand.getText(), cat, checkAc.isSelected(), checkRadio.isSelected(), checkMulti.isSelected());
+            Main.cars.add(Main.currentCar);
         });
 
         btnSearch.addActionListener((actionEvent) -> {
+            if (Main.cars.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Nenhum registro presente");
+                return;
+            }
+
             this.dispose();
+            Main.search.updateCombo();
             Main.search.setVisible(true);
         });
     }
